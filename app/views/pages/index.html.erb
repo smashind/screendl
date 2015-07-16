@@ -1,0 +1,116 @@
+<p>Get your <%= link_to "App Token here", "https://developer.hubstaff.com/my_apps", target: "_blank" %>, then get your <%= link_to "Auth Token here", "https://developer.hubstaff.com/docs/api#!/auth/POST_version_auth_format", target: "_blank" %>. With that info, you can enter your details below. The screenshots will be downloaded to the location on your computer that you specify.</p>
+<form class="form-horizontal" action="/result" method="post">
+<fieldset>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="authtoken">Auth Token</label>  
+  <div class="col-md-6">
+  <input id="authtoken" name="authtoken" placeholder="required" class="form-control input-md" required="" type="text">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="apptoken">App Token</label>  
+  <div class="col-md-6">
+  <input id="apptoken" name="apptoken" placeholder="required" class="form-control input-md" required="" type="text">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="starttime">Start Time</label>  
+  <div class="col-md-6">
+  <input id="starttime" name="starttime" placeholder="required" class="form-control input-md" required="" type="text">
+  <span class="help-block"><a href="http://www.timestampgenerator.com/" target="_blank">ISO 8601 format</a></span>  
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="stoptime">Stop Time</label>  
+  <div class="col-md-6">
+  <input id="stoptime" name="stoptime" placeholder="required" class="form-control input-md" required="" type="text">
+  <span class="help-block"><a href="http://www.timestampgenerator.com/" target="_blank">ISO 8601 format</a></span>  
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="organizations">Organization ID(s)</label>  
+  <div class="col-md-6">
+  <input id="organizations" name="organizations" class="form-control input-md" type="text">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="organizations">Project ID(s)</label>  
+  <div class="col-md-6">
+  <input id="projects" name="projects" class="form-control input-md" type="text">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="users">User ID(s)</label>  
+  <div class="col-md-6">
+  <input id="users" name="users" class="form-control input-md" type="text">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="users">Offset</label>  
+  <div class="col-md-6">
+  <input id="offset" name="offset" class="form-control input-md" type="text">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="location">Download to</label>  
+  <div class="col-md-6">
+  <input id="location" name="location" placeholder="required" class="form-control input-md" required="" type="text">
+  <span class="help-block">(eg $HOME/Desktop/folder on Macs or C:\Users\Username\Desktop\folder on Win)</span>  
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="submit"></label>
+  <div class="col-md-4">
+    <button id="submit" name="submit" class="btn btn-primary submit">Download Screens</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+<script type="text/javascript">
+function updateButton() {
+  if ( $("#authtoken").val() && 
+       $("#apptoken").val() && 
+       $("#starttime").val() && 
+       $("#stoptime").val() && 
+       $("#location").val() ) {
+    $('.submit').click(function(){
+     $(this).prop('disabled', true);
+     $(this).text('Downloading screens... this may take a while');
+    });
+  }
+}
+
+$(document).ready(function (){
+  updateButton();
+  $('#authtoken, #apptoken, #starttime, #stoptime, #location').on('change',function(){
+    updateButton();
+  });
+});
+</script>

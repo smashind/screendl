@@ -1,0 +1,7 @@
+<p>Your images have been downloaded to <strong><%= params[:location] %></strong></p>
+
+<div class="well">
+	<p>Your request was: https://api.hubstaff.com/v1/screenshots?start_time=<%= params[:starttime] %>&stop_time=<%= params[:stoptime] %><%= @orgs %><%= @projects %><%= @users %><p>
+</div>
+
+<p>Need to download more? <%= link_to "Go back and enter your screenshot details", root_path %>.</p>
